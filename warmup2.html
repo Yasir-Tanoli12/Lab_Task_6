@@ -1,0 +1,26 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Warm-up 2</title><link rel="stylesheet" href="css/style.css"></head>
+<body><main>
+<div class="nav" id="nav"></div>
+<h1>Warm-up 2 — Callbacks: success vs seat conflict</h1>
+<p class="sub">Seat A1, Callbacks mode. Compare both runs and find where the paths first differ.</p>
+
+<div class="card"><div class="row">
+<button class="primary" id="okBtn">Run: Successful booking</button>
+<button id="failBtn">Run: Seat conflict</button></div></div>
+
+<div class="card"><h2>Stages</h2><div class="stages">
+<div class="stage" id="verify"><b>Verify seats</b><small>waiting</small></div>
+<div class="stage" id="payment"><b>Process payment</b><small>waiting</small></div>
+<div class="stage" id="ticket"><b>Issue ticket</b><small>waiting</small></div></div></div>
+
+<div class="card"><h2>Timeline</h2><div class="console" id="out"></div></div>
+
+<div class="card"><h2>Do this in EventPass</h2><ol>
+<li>Reset demo → select A1 → Callbacks → Successful booking → Book. Note all 3 stages complete.</li>
+<li>Reset demo → select A1 → Callbacks → Seat conflict → Book. Verify fails; payment and ticket never start.</li>
+<li>Open <code>js/flows.js</code> → <code>checkoutWithCallbacks()</code> → the <code>if (verifyError)</code> block.</li></ol></div>
+
+<div class="card"><h2>Answer to write</h2><p class="answer">The paths first differ at the <b>Verify seats</b> stage. In the success run, <code>verifySeatsCallback</code> calls <code>callback(null, {valid:true})</code>, so the code continues to payment. In the conflict run it calls <code>callback(new Error(...))</code>; <code>if (verifyError)</code> is true, so it calls <code>hooks.fail</code>, <code>finished(error)</code> and <code>return</code>s. Payment and ticket are never started.</p></div>
+</main>
+<script src="js/common.js"></script><script src="js/warmup2.js"></script></body></html>

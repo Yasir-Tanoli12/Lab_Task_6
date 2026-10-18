@@ -1,0 +1,34 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Warm-up 4</title><link rel="stylesheet" href="css/style.css"></head>
+<body><main>
+<div class="nav" id="nav"></div>
+<h1>Warm-up 4 — Payment decline in Async / await mode</h1>
+<p class="sub">Identify which awaited stage rejects.</p>
+
+<div class="card"><div class="row">
+<button class="primary" id="okBtn">Run: Successful booking</button>
+<button id="failBtn">Run: Payment declined</button></div></div>
+
+<div class="card"><h2>Stages</h2><div class="stages">
+<div class="stage" id="verify"><b>Verify seats</b><small>waiting</small></div>
+<div class="stage" id="payment"><b>Process payment</b><small>waiting</small></div>
+<div class="stage" id="ticket"><b>Issue ticket</b><small>waiting</small></div></div></div>
+
+<div class="card"><h2>Timeline</h2><div class="console" id="out"></div></div>
+
+<div class="card"><h2>The function being run</h2>
+<pre>async function checkoutWithAsyncAwait(context, hooks) {
+  await tracked("verify",  () =&gt; verifySeatsPromise(context), hooks);
+  await tracked("payment", () =&gt; paymentPromise(context), hooks);   // &lt;-- rejects
+  const ticket = await tracked("ticket", () =&gt; issueTicketPromise(context), hooks);
+  return ticket;
+}</pre></div>
+
+<div class="card"><h2>Do this in EventPass</h2><ol>
+<li>Reset demo → select A1 → <b>Async / await</b> → <b>Payment declined</b> → Book.</li>
+<li>Verify succeeds, Payment fails, Ticket never starts.</li>
+<li>Open <code>js/flows.js</code> → <code>checkoutWithAsyncAwait()</code>. The second await is the one that throws.</li></ol></div>
+
+<div class="card"><h2>Answer to write</h2><p class="answer">The <b>payment</b> stage rejects: <code>await tracked("payment", ...)</code> throws the Error. Execution leaves the async function immediately, so the third line (ticket) never runs. <code>tracked()</code> marks the stage failed and rethrows; the async function returns a rejected Promise, handled by <code>.catch((error) =&gt; done(error))</code> in <code>app.js</code>.</p></div>
+</main>
+<script src="js/common.js"></script><script src="js/warmup4.js"></script></body></html>

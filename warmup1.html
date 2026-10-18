@@ -1,0 +1,28 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Warm-up 1</title><link rel="stylesheet" href="css/style.css"></head>
+<body><main>
+<div class="nav" id="nav"></div>
+<h1>Warm-up 1 — Predict the Console output</h1>
+<p class="sub">Reset the demo, then predict what prints when a 1000 ms timer sits between synchronous statements.</p>
+
+<div class="card"><h2>The code</h2>
+<pre>console.log("1. Booking started");
+setTimeout(() =&gt; {
+  console.log("2. Seat verification completed");
+}, 1000);
+console.log("3. User can continue browsing");</pre></div>
+
+<div class="card"><h2>Your prediction (one line per output, in order)</h2>
+<textarea id="prediction" placeholder="e.g.&#10;1. Booking started&#10;..."></textarea>
+<div class="row" style="margin-top:10px"><button class="primary" id="runBtn">Run it</button><button id="resetBtn">Reset</button></div></div>
+
+<div class="card"><h2>Actual output</h2><div class="console" id="out"></div></div>
+
+<div class="card"><h2>Do this in EventPass</h2><ol>
+<li>Click <b>Reset demo</b>; select A1; choose Callbacks + Successful booking.</li>
+<li>Click <b>Book selected seats</b> and watch the timeline.</li>
+<li>First trace line: "Synchronous JavaScript finishes; the first timer is pending."</li></ol></div>
+
+<div class="card"><h2>Answer to write</h2><p class="answer">Output order is 1, 3, then 2 about 1 second later. <code>setTimeout</code> only registers the callback; JavaScript keeps running the synchronous statements, and the callback runs after the delay once the call stack is empty (event loop). The page is never blocked.</p></div>
+</main>
+<script src="js/common.js"></script><script src="js/warmup1.js"></script></body></html>

@@ -1,0 +1,31 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Warm-up 5</title><link rel="stylesheet" href="css/style.css"></head>
+<body><main>
+<div class="nav" id="nav"></div>
+<h1>Warm-up 5 — Quick-pick two: rest and spread</h1>
+<p class="sub">Locate the rest and spread operators that update the seat selection.</p>
+
+<div class="card"><div class="seats" id="seats"></div>
+<div class="row" style="margin-top:12px"><button class="primary" id="quickBtn">✦ Quick-pick two</button><button id="clearBtn">Clear selection</button></div>
+<p style="margin:12px 0 0"><b>Selected:</b> <span class="tags" id="tags"></span></p></div>
+
+<div class="card"><h2>What just happened</h2><div class="console" id="out"></div></div>
+
+<div class="card"><h2>Code (from EventPass js/app.js)</h2>
+<pre>function selectGroup(...ids) {            // REST: collects arguments into array ids
+  const additions = ids.filter(id =&gt; /* valid, not booked, not selected */);
+  selected = [...selected, ...additions].slice(0, 4);   // SPREAD: builds a new array
+  render();
+}
+function autoPickTwo() {
+  const choices = /* first 2 available seat IDs */;
+  selectGroup(...choices);                // SPREAD in the call: expands array into arguments
+}</pre></div>
+
+<div class="card"><h2>Do this in EventPass</h2><ol>
+<li>Reset demo → click <b>Quick-pick two</b> → A1 and A3 get selected (A2 is booked).</li>
+<li>Open <code>js/app.js</code>, lines ~135–156: find <code>selectGroup(...ids)</code>, <code>[...selected, ...additions]</code> and <code>selectGroup(...choices)</code>.</li></ol></div>
+
+<div class="card"><h2>Answer to write</h2><p class="answer"><b>Rest:</b> <code>function selectGroup(...ids)</code> collects the arguments into the array <code>ids</code>. <b>Spread:</b> <code>selectGroup(...choices)</code> expands the array into separate arguments, and <code>selected = [...selected, ...additions]</code> builds a <i>new</i> selection array without mutating the old one.</p></div>
+</main>
+<script src="js/common.js"></script><script src="js/warmup5.js"></script></body></html>

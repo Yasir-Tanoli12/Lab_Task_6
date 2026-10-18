@@ -1,0 +1,21 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Warm-up 6</title><link rel="stylesheet" href="css/style.css"></head>
+<body><main>
+<div class="nav" id="nav"></div>
+<h1 id="eventTitle">Loading…</h1>
+<p class="sub" id="eventSub"></p>
+
+<div class="card"><h2>Event details (rendered from js/warmup6-data.js)</h2>
+<p id="eventMeta"></p>
+<p class="sub">Needs a local server (Live Server / Live Preview in VS Code) because it uses ES module <code>import</code>.</p></div>
+
+<div class="card"><h2>Do this</h2><ol>
+<li>Open <code>js/warmup6-data.js</code> and change <code>title</code> to <code>"University Tech Fest 2026"</code>.</li>
+<li>Save and reload. The heading above changes, and the HTML file was not edited.</li>
+<li>Same in EventPass: edit <code>EVENT.title</code> in <code>js/data.js</code>, reload, the page heading changes.</li>
+<li>Restore the original title afterwards.</li></ol></div>
+
+<div class="card"><h2>Answer to write</h2><p class="answer">The heading is not hard-coded in the HTML. <code>app.js</code> does <code>import { EVENT } from "./data.js"</code> and writes <code>EVENT.title</code> into the DOM when the page loads. Changing the exported constant in the data module and reloading re-runs that code with the new value, so the displayed text updates (one exported value can feed several parts of the page).</p></div>
+</main>
+<script src="js/common.js"></script>
+<script type="module" src="js/warmup6.js"></script></body></html>

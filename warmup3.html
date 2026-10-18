@@ -1,0 +1,31 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Warm-up 3</title><link rel="stylesheet" href="css/style.css"></head>
+<body><main>
+<div class="nav" id="nav"></div>
+<h1>Warm-up 3 — Payment decline in Promises mode</h1>
+<p class="sub">Show a payment decline and point to the <code>.catch()</code>.</p>
+
+<div class="card"><div class="row">
+<button class="primary" id="okBtn">Run: Successful booking</button>
+<button id="failBtn">Run: Payment declined</button></div></div>
+
+<div class="card"><h2>Stages</h2><div class="stages">
+<div class="stage" id="verify"><b>Verify seats</b><small>waiting</small></div>
+<div class="stage" id="payment"><b>Process payment</b><small>waiting</small></div>
+<div class="stage" id="ticket"><b>Issue ticket</b><small>waiting</small></div></div></div>
+
+<div class="card"><h2>Timeline</h2><div class="console" id="out"></div></div>
+
+<div class="card"><h2>The chain being run</h2>
+<pre>checkoutWithPromises(context, hooks)
+  .then((ticket) =&gt; done(null, ticket))
+  .catch((error) =&gt; done(error));   // &lt;-- runs when payment rejects</pre></div>
+
+<div class="card"><h2>Do this in EventPass</h2><ol>
+<li>Reset demo → select A1 → <b>Promises</b> → <b>Payment declined</b> → Book.</li>
+<li>Verify succeeds, Payment fails, Ticket never starts.</li>
+<li>Open <code>js/app.js</code>, line ~230: <code>checkoutWithPromises(snapshot, hooks).then(...).catch((error) =&gt; done(error))</code>.</li></ol></div>
+
+<div class="card"><h2>Answer to write</h2><p class="answer">The payment Promise is rejected via <code>reject(error)</code> (inside <code>fromCallback</code>). A rejection skips every following <code>.then()</code>, so the ticket stage never runs, and goes straight to the final <code>.catch((error) =&gt; done(error))</code> in <code>app.js</code>, which shows the failure in the interface.</p></div>
+</main>
+<script src="js/common.js"></script><script src="js/warmup3.js"></script></body></html>
