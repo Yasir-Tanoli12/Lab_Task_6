@@ -1,0 +1,18 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Task 6 — Test and explain</title><link rel="stylesheet" href="css/style.css"></head><body><main>
+<div class="nav" id="nav"></div>
+<h1>Task 6 — Test and Explain the System</h1>
+<section class="card"><h2>Demonstrations</h2>
+<div class="row"><label>Style <select id="styleSelect" data-lock><option value="callbacks">Nested callbacks</option><option value="promises">Promise chain</option><option value="async">Async / await</option></select></label>
+<button class="btn" data-demo="success" data-lock>Successful registration</button>
+<button class="btn" data-demo="full" data-lock>Full workshop</button>
+<button class="btn" data-demo="approval" data-lock>Approval failure</button>
+<button class="btn" data-demo="delayed" data-lock>Delayed confirmation</button></div>
+<div id="notice" class="notice" hidden></div>
+<div id="heartbeat" class="heartbeat"></div>
+<div style="display:none"><div id="cards"></div><div id="summary"></div><select id="modeSelect"><option value="normal">n</option></select><button id="registerBtn"></button><button id="resetBtn"></button></div></section>
+<section class="card"><h2>Progress</h2><div id="stages" class="stages"></div><h3>Execution log</h3><ol id="log" class="log"></ol></section>
+<section class="card"><h2>Confirmed registrations</h2><div id="registrations"></div></section>
+<section class="card"><h2>Acceptance tests</h2>
+<div class="row"><button class="btn primary" id="testBtn" data-lock>Run all acceptance tests</button><span id="testSummary" class="mute"></span></div>
+<div style="overflow:auto;margin-top:12px"><table id="testTable"><thead><tr><th>Scenario</th><th>Style</th><th>Selected input</th><th>Expected result</th><th>Actual result</th><th>Result</th></tr></thead><tbody></tbody></table></div></section>
+</main><script src="js/data.js"></script><script src="js/selection.js"></script><script src="js/services.js"></script><script src="js/flows-callbacks.js"></script><script src="js/flows-promises.js"></script><script src="js/flows-async.js"></script><script src="js/runner.js"></script><script src="js/ui.js"></script><script src="js/controller.js"></script><script src="js/panel.js"></script><script src="js/tests.js"></script><script src="js/task6.js"></script></body></html>

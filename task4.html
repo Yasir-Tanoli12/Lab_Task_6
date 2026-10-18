@@ -1,0 +1,8 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Task 4 — Nested callbacks</title><link rel="stylesheet" href="css/style.css"></head><body><main>
+<div class="nav" id="nav"></div>
+<h1>Task 4 — Add a Nested-Callback Registration Flow</h1>
+<section class="card"><h2>Select workshops</h2><div id="cards" class="grid"></div><div id="summary" class="summary"></div><div id="notice" class="notice" hidden></div>
+<div class="row" style="margin-top:12px"><label>Outcome <select id="modeSelect" data-lock><option value="normal">✓ Normal</option><option value="approval-fail">✕ Approval rejected</option><option value="slow-confirmation">⏳ Slow confirmation (+4 s)</option></select></label><button class="btn primary" id="registerBtn">Register</button><button class="btn" id="resetBtn" data-lock>Reset demo data</button></div></section>
+<section class="card"><h2>Progress</h2><div id="stages" class="stages"></div><h3>Execution log</h3><ol id="log" class="log"></ol></section>
+<section class="card"><h2>Confirmed registrations</h2><div id="registrations"></div></section>
+</main><script src="js/data.js"></script><script src="js/selection.js"></script><script src="js/services.js"></script><script src="js/flows-callbacks.js"></script><script src="js/flows-promises.js"></script><script src="js/flows-async.js"></script><script src="js/runner.js"></script><script src="js/ui.js"></script><script src="js/controller.js"></script><script src="js/panel.js"></script><script src="js/task4.js"></script></body></html>
